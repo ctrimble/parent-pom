@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.ctrimble</groupId>
+  <groupId>com.github.ctrimble</groupId>
   <artifactId>ctrimble</artifactId>
   <version>1-SNAPSHOT</version>
   <packaging>pom</packaging>
