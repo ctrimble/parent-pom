@@ -10,12 +10,13 @@
     <version>7</version>
   </parent>
 
-  <groupId>com.github.ctrimble</groupId>
-  <artifactId>ctrimble</artifactId>
+  <groupId>com.xiantrimble</groupId>
+  <artifactId>oss-parent</artifactId>
   <version>1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>ctrimble OSS Parent POM</name>
+  <name>OSS Parent</name>
+  <description>A parent POM for releasing to Sonatype's Nexus server, providing hard version numbers for common plugins.</description>
 
   <licenses>
     <license>
@@ -29,28 +30,6 @@
     <developerConnection>scm:git:git://github.com/ctrimble/parent-pom.git</developerConnection>
     <url>https://github.com/ctrimble/parent-pom</url>
   </scm>
-
-  <repositories>
-    <repository>
-      <id>tinkerpop-repository</id>
-      <name>TinkerPop Maven2 Repository</name>
-      <url>http://tinkerpop.com/maven2</url>
-    </repository>
-    <repository>
-      <id>orientechnologies-repository</id>
-      <name>Orient Technologies Maven2 Repository</name>
-      <url>http://www.orientechnologies.com/listing/m2</url>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>com.springsource.repository.bundles.external</id>
-      <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
-      <url>http://repository.springsource.com/maven/bundles/external</url>
-    </repository>
-  </repositories>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
