@@ -28,7 +28,7 @@
   <scm>
     <connection>scm:git:git://github.com/ctrimble/parent-pom.git</connection>
     <developerConnection>scm:git:git://github.com/ctrimble/parent-pom.git</developerConnection>
-    <url>https://github.com/ctrimble/parent-pom</url>
+    <url>git@github.com:ctrimble/parent-pom.git</url>
   </scm>
 
   <properties>
