@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) ${project.inceptionYear} Christian Trimble (xiantrimble@gmail.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -12,6 +29,7 @@
   <packaging>pom</packaging>
   <name>OSS Parent</name>
   <description>A parent POM for releasing to Sonatype's Nexus server, providing hard version numbers for common plugins.</description>
+  <inceptionYear>2012</inceptionYear>
   <licenses>
     <license>
       <name>Apache License Version 2.0</name>
@@ -32,9 +50,16 @@
     <java.source.version>1.6</java.source.version>
     <java.target.version>1.6</java.target.version>
     <copyright.owner>Christian Trimble</copyright.owner>
-    <copyright.year>2012</copyright.year>
+    <copyright.email>xiantrimble@gmail.com</copyright.email>
   </properties>
   <build>
+    <extensions>
+      <extension>
+        <groupId>com.xiantrimble.maven</groupId>
+        <artifactId>maven-format-lifecycle</artifactId>
+        <version>1.0.0</version>
+      </extension>
+    </extensions>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -99,6 +124,12 @@
             <!-- We have to disable the java api link, since Oracle has changed 
               the url to the core javadocs. It's not easy to specify a different url for 
               each JDK we build against, so we disable it entirely. -->
+            <doclet>ch.raffael.doclets.pegdown.PegdownDoclet</doclet>
+            <docletArtifact>
+              <groupId>ch.raffael.pegdown-doclet</groupId>
+              <artifactId>pegdown-doclet</artifactId>
+              <version>1.1</version>
+            </docletArtifact>
             <detectJavaApiLink>false</detectJavaApiLink>
           </configuration>
         </plugin>
@@ -300,26 +331,42 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>com.mycila.maven-license-plugin</groupId>
-          <artifactId>maven-license-plugin</artifactId>
-          <version>1.10.b1</version>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>2.6</version>
           <configuration>
-            <header>src/etc/header.txt</header>
+            <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
             <properties>
-              <copyright.year>${copyright.year}</copyright.year>
-              <copyright.owner>${copyright.owner}</copyright.owner>
+              <project.inceptionYear>${project.inceptionYear}</project.inceptionYear>
+              <owner>${copyright.owner}</owner>
+              <email>${copyright.email}</email>
             </properties>
             <dryRun>false</dryRun>
             <goalPrefix>license</goalPrefix>
             <strictCheck>true</strictCheck>
+            <excludes>
+              <exclude>**/LICENSE</exclude>
+              <exclude>**/NOTICE</exclude>
+              <exclude>**/README</exclude>
+              <exclude>src/test/resources/**</exclude>
+              <exclude>src/main/resources/**</exclude>
+            </excludes>
           </configuration>
+          <executions>
+            <execution>
+              <phase>format</phase>
+              <goals>
+                <goal>format</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>com.mycila.maven-license-plugin</groupId>
-        <artifactId>maven-license-plugin</artifactId>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
