@@ -47,8 +47,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.source.version>1.6</java.source.version>
-    <java.target.version>1.6</java.target.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <copyright.owner>Christian Trimble</copyright.owner>
     <copyright.email>xiantrimble@gmail.com</copyright.email>
   </properties>
@@ -80,11 +80,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.1</version>
-          <configuration>
-            <source>${java.source.version}</source>
-            <target>${java.target.version}</target>
-          </configuration>
+          <version>3.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -377,9 +373,6 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.8</version>
         <configuration>
-          <!-- We have to disable the java api link, since Oracle has changed 
-            the url to the core javadocs. It's not easy to specify a different url for 
-            each JDK we build against, so we disable it entirely. -->
           <detectJavaApiLink>false</detectJavaApiLink>
           <docfilessubdirs>true</docfilessubdirs>
         </configuration>
@@ -394,7 +387,7 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <targetJdk>${java.target.version}</targetJdk>
+          <targetJdk>${maven.compiler.target}</targetJdk>
         </configuration>
       </plugin>
       <plugin>
